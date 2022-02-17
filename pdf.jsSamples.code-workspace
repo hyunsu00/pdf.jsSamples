@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "pdf.jsSample01"
+		},
+		{
+			"path": "pdf.jsSample02"
+		}
+	],
+	"settings": {
+		"html.format.enable": false,
+		"liveServer.settings.port": 5510,
+		"liveServer.settings.multiRootWorkspaceName": "pdf.jsSample01"
+	}
+}

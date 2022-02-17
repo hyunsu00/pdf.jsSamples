@@ -5,11 +5,15 @@
 		},
 		{
 			"path": "pdf.jsSample02"
+		},
+		{
+			"path": "pdf.jsSample03"
 		}
 	],
 	"settings": {
 		"html.format.enable": false,
 		"liveServer.settings.port": 5510,
-		"liveServer.settings.multiRootWorkspaceName": "pdf.jsSample01"
+		"liveServer.settings.multiRootWorkspaceName": "pdf.jsSample03",
+		"editor.foldingMaximumRegions": 50000
 	}
 }

@@ -1,5 +1,4 @@
 // main.js
-
 let PDFJSAnnotate = PDFAnnotate["default"];
 const UI = PDFJSAnnotate.UI;
 let localStoreAdapter = new PDFJSAnnotate.LocalStoreAdapter();
@@ -11,18 +10,14 @@ let MyStoreAdapter = new PDFJSAnnotate.StoreAdapter({
     return localStoreAdapter.getAnnotation(documentId, annotationId);
   },
   addAnnotation(documentId, pageNumber, annotation) {
-    let coordinates = [
-      annotation.x,
-      annotation.y,
-      annotation.x + annotation.width,
-      annotation.x + annotation.height,
-    ];
-    pdfFactory.createSquareAnnotation(
-      pageNumber - 1,
-      coordinates.slice(),
-      null,
-      null
-    );
+    // annotation.x = 312;
+    // annotation.y = 460;
+    // annotation.width = 250;
+    // annotation.height = 170;
+
+    let x_y = [annotation.x, 800 - annotation.y];
+    let coordinates = [x_y[0], x_y[1], x_y[0] + annotation.width, x_y[1] - annotation.height];
+    pdfFactory.createSquareAnnotation(pageNumber - 1, coordinates.slice(), null, null);
     return localStoreAdapter.addAnnotation(documentId, pageNumber, annotation);
   },
   editAnnotation(documentId, pageNumber, annotation) {
@@ -49,7 +44,7 @@ let url = "./samples/compressed.tracemonkey-pldi-09.pdf";
 const RENDER_OPTIONS = {
   documentId: url,
   pdfDocument: null,
-  scale: 1,
+  scale: 1.0,
   rotate: 0,
 };
 
@@ -96,14 +91,6 @@ window.onload = () => {
   document.getElementById("area").addEventListener("click", (e) => {
     console.log("click area");
     UI.enableRect("area");
-
-    // let coordinates = [43, 722, 143, 670];
-    // pdfFactory.createSquareAnnotation(
-    //   pdfViewer.currentPageNumber - 1,
-    //   coordinates.slice(),
-    //   null,
-    //   null
-    // );
   });
 
   document.getElementById("download").addEventListener("click", (e) => {

@@ -18,12 +18,10 @@
 try {
   require.resolve("worker-loader");
 } catch (ex) {
-  throw new Error(
-    "Cannot find the `worker-loader` package, please make sure that it's correctly installed."
-  );
+  throw new Error("Cannot find the `worker-loader` package, please make sure that it's correctly installed.");
 }
 
-var pdfjs = require("./build/pdf.js.js");
+var pdfjs = require("./build/pdf.js.js.js.js");
 var PdfjsWorker = require("worker-loader!./build/pdf.worker.js");
 
 if (typeof window !== "undefined" && "Worker" in window) {

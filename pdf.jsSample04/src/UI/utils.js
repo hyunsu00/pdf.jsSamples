@@ -1,15 +1,9 @@
-import { getTranslation } from '../render/appendChild';
-import {
-  applyTransform,
-  applyInverseTransform,
-  translate,
-  rotate,
-  scale
-} from '../utils/mathUtils';
+import { getTranslation } from "../render/appendChild";
+import { applyTransform, applyInverseTransform, translate, rotate, scale } from "../utils/mathUtils";
 
-export const BORDER_COLOR = '#00BFFF';
+export const BORDER_COLOR = "#00BFFF";
 
-const userSelectStyleSheet = document.createElement('style');
+const userSelectStyleSheet = document.createElement("style");
 userSelectStyleSheet.innerHTML = `
 body {
   -webkit-user-select: none;
@@ -19,7 +13,7 @@ body {
 }
 `;
 
-userSelectStyleSheet.setAttribute('data-pdf-annotate-user-select', 'true');
+userSelectStyleSheet.setAttribute("data-pdf-annotate-user-select", "true");
 
 /**
  * Find the SVGElement that contains all the annotations for a page
@@ -30,10 +24,8 @@ userSelectStyleSheet.setAttribute('data-pdf-annotate-user-select', 'true');
 export function findSVGContainer(node) {
   let parentNode = node;
 
-  while ((parentNode = parentNode.parentNode) &&
-          parentNode !== document) {
-    if (parentNode.nodeName.toUpperCase() === 'SVG' &&
-        parentNode.getAttribute('data-pdf-annotate-container') === 'true') {
+  while ((parentNode = parentNode.parentNode) && parentNode !== document) {
+    if (parentNode.nodeName.toUpperCase() === "SVG" && parentNode.getAttribute("data-pdf-annotate-container") === "true") {
       return parentNode;
     }
   }
@@ -77,7 +69,7 @@ export function findAnnotationAtPoint(x, y) {
     return;
   }
 
-  let elements = svg.querySelectorAll('[data-pdf-annotate-type]');
+  let elements = svg.querySelectorAll("[data-pdf-annotate-type]");
   for (let element of elements) {
     if (pointIntersectsRect(x, y, element.getBoundingClientRect())) {
       return element;
@@ -110,7 +102,7 @@ export function getOffsetAnnotationRect(el) {
   let { width, height } = rect;
   let extraOffsetWidth = 0;
   let extraOffsetHeight = 0;
-  if (['line', 'path'].indexOf(el.tagName.toLowerCase()) > -1 && el.getBBox) {
+  if (["line", "path"].indexOf(el.tagName.toLowerCase()) > -1 && el.getBBox) {
     let bbox = el.getBBox();
     extraOffsetWidth = (rect.width - bbox.width) / 2;
     extraOffsetHeight = (rect.height - bbox.height) / 2;
@@ -124,7 +116,7 @@ export function getOffsetAnnotationRect(el) {
     bottom: rect.bottom - offsetTop - extraOffsetHeight,
     right: rect.right - offsetLeft - extraOffsetWidth,
     width: width,
-    height: height
+    height: height,
   };
 }
 
@@ -157,14 +149,14 @@ export function convertToSvgRect(rect, svg, viewport) {
     x: Math.min(pt1[0], pt2[0]),
     y: Math.min(pt1[1], pt2[1]),
     width: Math.abs(pt2[0] - pt1[0]),
-    height: Math.abs(pt2[1] - pt1[1])
+    height: Math.abs(pt2[1] - pt1[1]),
   };
 }
 
 export function convertToSvgPoint(pt, svg, viewport) {
   viewport = viewport || getMetadata(svg).viewport;
 
-  let xform = [ 1, 0, 0, 1, 0, 0 ];
+  let xform = [1, 0, 0, 1, 0, 0];
   xform = scale(xform, viewport.scale, viewport.scale);
   xform = rotate(xform, viewport.rotation);
 
@@ -177,7 +169,7 @@ export function convertToSvgPoint(pt, svg, viewport) {
 export function convertToScreenPoint(pt, svg, viewport) {
   viewport = viewport || getMetadata(svg).viewport;
 
-  let xform = [ 1, 0, 0, 1, 0, 0 ];
+  let xform = [1, 0, 0, 1, 0, 0];
   xform = scale(xform, viewport.scale, viewport.scale);
   xform = rotate(xform, viewport.rotation);
 
@@ -216,8 +208,7 @@ export function getScroll(el) {
   let scrollLeft = 0;
   let parentNode = el;
 
-  while ((parentNode = parentNode.parentNode) &&
-          parentNode !== document) {
+  while ((parentNode = parentNode.parentNode) && parentNode !== document) {
     scrollTop += parentNode.scrollTop;
     scrollLeft += parentNode.scrollLeft;
   }
@@ -234,9 +225,8 @@ export function getScroll(el) {
 export function getOffset(el) {
   let parentNode = el;
 
-  while ((parentNode = parentNode.parentNode) &&
-          parentNode !== document) {
-    if (parentNode.nodeName.toUpperCase() === 'SVG') {
+  while ((parentNode = parentNode.parentNode) && parentNode !== document) {
+    if (parentNode.nodeName.toUpperCase() === "SVG") {
       break;
     }
   }
@@ -271,8 +261,8 @@ export function enableUserSelect() {
  */
 export function getMetadata(svg) {
   return {
-    documentId: svg.getAttribute('data-pdf-annotate-document'),
-    pageNumber: parseInt(svg.getAttribute('data-pdf-annotate-page'), 10),
-    viewport: JSON.parse(svg.getAttribute('data-pdf-annotate-viewport'))
+    documentId: svg.getAttribute("data-pdf-annotate-document"),
+    pageNumber: parseInt(svg.getAttribute("data-pdf-annotate-page"), 10),
+    viewport: JSON.parse(svg.getAttribute("data-pdf-annotate-viewport")),
   };
 }

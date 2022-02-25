@@ -7,8 +7,15 @@
 		{
 			"type": "pwa-chrome",
 			"request": "launch",
-			"name": "Launch Chrome against localhost",
-			"url": "http://localhost:5510/dist/index.html",
+			"name": "Live Server Launch Chrome",
+			"url": "http://localhost:5510/index.html",
+			"webRoot": "${workspaceFolder}"
+		},
+		{
+			"type": "pwa-chrome",
+			"request": "launch",
+			"name": "webpack devServer Launch Chrome",
+			"url": "http://localhost:5506/index.html",
 			"webRoot": "${workspaceFolder}"
 		}
 	]

@@ -1,4 +1,6 @@
 const path = require("path");
+const webpack = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   // Entry 설정 (입력 파일 경로)
@@ -21,21 +23,19 @@ module.exports = {
   // webpack-dev-server 설정
   // https://webpack.kr/configuration/dev-server/#devserver
   devServer: {
-    // static: [
-    //   {
-    //     directory: path.resolve(__dirname, ""),
-    //   },
-    //   {
-    //     directory: path.resolve(__dirname, "dist"),
-    //   },
-    // ],
-    static: {
-      directory: __dirname,
-    },
-    hot: true,
+    static: path.resolve(__dirname),
     compress: true,
     port: 5506,
   },
+  plugins: [
+    // index.html 탬플릿 파일 생성
+    // 실시간 리로드 (!!!트릭!!!)
+    new HtmlWebpackPlugin({
+      template: "./index.html",
+    }),
+    // 웹팩의 빌드 진행율을 표시해주는 플러그인
+    new webpack.ProgressPlugin(),
+  ],
   // 모드
   // development -> 개발모드
   // production -> 배포모드(기본값)

@@ -1,0 +1,42 @@
+<!-- index.htm -->
+<html>
+  <head>
+    <style>
+      #viewerContainer {
+        overflow: auto;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+    <link rel="stylesheet" type="text/css" href="./external/pdfjs-dist/web/pdf_viewer.css" />
+    <script src="./external/pdfjs-dist/build/pdf.min.js"></script>
+    <script src="./external/pdfjs-dist/web/pdf_viewer.js"></script>
+    <script src="./dist/pdfAnnotate.js" async></script>
+  </head>
+  <body>
+    Coordinates:[<span id="coords"></span>]
+    <button id="clear" type="button">clear</button>
+    Annotation Content: <input placeholder="Content" id="content" type="text" /> Annotation Author: <input placeholder="Author" id="author" type="text" /> <br />
+    <button id="addTextAnnotation" type="button">Text Annotation</button>
+    <button id="addHighlightAnnotation" type="button">Highlight Annotation</button>
+    <button id="addUnderlineAnnotation" type="button">Underline Annotation</button>
+    <button id="addSquigglyAnnotation" type="button">Squiggly Annotation</button>
+    <button id="addStrikeOutAnnotation" type="button">StrikeOut Annotation</button>
+    <button id="addCircleAnnotation" type="button">Circle Annotation</button>
+    <button id="addSquareAnnotation" type="button">Square Annotation</button>
+    <button id="addPolygonAnnotation" type="button">Polygon Annotation</button>
+    <button id="addPolyLineAnnotation" type="button">PolyLine Annotation</button>
+    <button id="addCaretAnnotation" type="button" disabled>Caret Annotation</button>
+    <button id="addStampAnnotation" type="button" disabled>Stamp Annotation</button>
+    <button id="addFreeTextAnnotation" type="button" disabled>FreeText Annotation</button>
+    <button id="download" type="button">Download</button>
+    <div id="viewerContainer">
+      <div id="viewer" class="pdfViewer"></div>
+    </div>
+    <div style="background: lightgray; width: 100%; height: 20px; position: fixed; bottom: 0px; left: 0px">
+      <b>Status:<span id="statusLine"></span> - # <span id="annotationCount"></span>Annotations</b>
+    </div>
+    <script src="./main.js" async></script>
+  </body>
+</html>

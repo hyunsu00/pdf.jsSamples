@@ -1,6 +1,5 @@
 const path = require("path");
 const webpack = require("webpack");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   // Entry 설정 (입력 파일 경로)
@@ -19,21 +18,12 @@ module.exports = {
     // 'this', 'window', 'global', 'commonjs', 'module', 'commonjs2',
     // 'amd', 'amd-require', 'umd'
     libraryTarget: "umd",
+    // libraryTarget: "umd"를 사용할 때 output.umdNamedDefine을 true로 설정하면 UMD 빌드의 AMD 모듈 이름이 지정됩니다. 
+    // 그렇지 않으면 익명의 define이 사용됩니다.
+    // https://webpack.kr/configuration/output/#outputumdnameddefine
     umdNamedDefine: true,
   },
-  // webpack-dev-server 설정
-  // https://webpack.kr/configuration/dev-server/#devserver
-  devServer: {
-    static: path.resolve(__dirname),
-    compress: true,
-    port: 5506,
-  },
   plugins: [
-    // index.html 탬플릿 파일 생성
-    // 실시간 리로드 (!!!트릭!!!)
-    new HtmlWebpackPlugin({
-      template: "./index.html",
-    }),
     // 웹팩의 빌드 진행율을 표시해주는 플러그인
     new webpack.ProgressPlugin(),
   ],

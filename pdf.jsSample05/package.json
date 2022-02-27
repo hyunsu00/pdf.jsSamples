@@ -1,12 +1,15 @@
 {
+  "//": [
+    "참고 URL",
+    "https://docs.npmjs.com/cli/v7/configuring-npm/package-json" 
+  ],
   "name": "pdf.jssample05",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
   "scripts": {
     "build": "tsc && webpack",
-    "watch": "webpack --watch",
-    "server": "webpack-dev-server --open"
+    "watch": "webpack --watch"
   },
   "keywords": [],
   "author": "",

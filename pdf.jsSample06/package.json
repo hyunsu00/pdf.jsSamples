@@ -1,0 +1,26 @@
+{
+  "//": [
+    "참고 URL",
+    "https://docs.npmjs.com/cli/v7/configuring-npm/package-json"
+  ],
+  "name": "pdf.jssample06",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "build": "webpack",
+    "watch": "webpack --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@javascript-obfuscator/escodegen": "^2.3.0",
+    "core-js": "^3.21.1",
+    "dommatrix": "^0.0.24",
+    "es-module-shims": "^1.4.7",
+    "web-streams-polyfill": "^3.2.0",
+    "webpack": "^5.69.1",
+    "webpack-cli": "^4.9.2"
+  }
+}

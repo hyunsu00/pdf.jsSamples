@@ -1,0 +1,18 @@
+{
+  "//": [
+    "참고 URL",
+    "https://docs.npmjs.com/cli/v7/configuring-npm/package-json"
+  ],
+  "name": "pdf.jssample07",
+  "version": "1.0.0",
+  "description": "```bash\r npm install\r ```",
+  "main": "",
+  "scripts": {
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "es-module-shims": "^1.4.7"
+  }
+}

@@ -24,23 +24,23 @@ module.exports = {
     // 'this', 'window', 'global', 'commonjs', 'module', 'commonjs2',
     // 'amd', 'amd-require', 'umd'
     libraryTarget: "umd",
-    // libraryTarget: "umd"를 사용할 때 output.umdNamedDefine을 true로 설정하면 UMD 빌드의 AMD 모듈 이름이 지정됩니다. 
+    // libraryTarget: "umd"를 사용할 때 output.umdNamedDefine을 true로 설정하면 UMD 빌드의 AMD 모듈 이름이 지정됩니다.
     // 그렇지 않으면 익명의 define이 사용됩니다.
     // https://webpack.kr/configuration/output/#outputumdnameddefine
     umdNamedDefine: true,
     // 브라우저와 Node.js 모두에서 UMD 빌드를 사용할 수 있도록 하려면 output.globalObject옵션 'this' 설정
     // 기본값 : self (브라우저)
     // https://webpack.js.org/configuration/output/#outputglobalobject
-    "globalObject": "this",
+    globalObject: "this",
   },
   plugins: [
     // 웹팩의 빌드 진행율을 표시해주는 플러그인
     new webpack.ProgressPlugin(),
   ],
   resolve: {
-    "alias": {
-      "pdfjs": path.resolve(__dirname, 'src'),
-    }
+    alias: {
+      pdfjs: path.resolve(__dirname, "src"),
+    },
   },
   // 소스 맵
   // https://webpack.kr/configuration/devtool/#devtool
@@ -51,28 +51,28 @@ module.exports = {
   module: {
     rules: [
       {
-        "loader": path.resolve(__dirname, 'external/webpack/pdfjsdev-loader.js'),
-        "options": {
-          "rootPath": path.resolve(__dirname, 'src/pdf.js'),
-          "saveComments": false,
-          "defines": {
-            "PRODUCTION": true,
-            "SKIP_BABEL": true,
-            "TESTING": false,
-            "GENERIC": true,
-            "MOZCENTRAL": false,
-            "CHROME": false,
-            "MINIFIED": false,
-            "COMPONENTS": false,
-            "LIB": false,
-            "IMAGE_DECODERS": false,
-            "PDF_SCRIPTING_JS_SOURCE": fs.readFileSync("./dist/pdf.scripting.js").toString(),
-            "BUNDLE_VERSION": "2.12.313",
-            "BUNDLE_BUILD": "a2ae56f",
-            "DEFAULT_PREFERENCES": {}
-          }
-        }
-      }
+        loader: path.resolve(__dirname, "external/webpack/pdfjsdev-loader.js"),
+        options: {
+          rootPath: path.resolve(__dirname, "src/pdf.js"),
+          saveComments: false,
+          defines: {
+            PRODUCTION: true,
+            SKIP_BABEL: true,
+            TESTING: false,
+            GENERIC: true,
+            MOZCENTRAL: false,
+            CHROME: false,
+            MINIFIED: false,
+            COMPONENTS: false,
+            LIB: false,
+            IMAGE_DECODERS: false,
+            PDF_SCRIPTING_JS_SOURCE: fs.readFileSync("./dist/temp/pdf.scripting.js").toString(),
+            BUNDLE_VERSION: "2.12.313",
+            BUNDLE_BUILD: "a2ae56f",
+            DEFAULT_PREFERENCES: {},
+          },
+        },
+      },
     ],
   },
 };

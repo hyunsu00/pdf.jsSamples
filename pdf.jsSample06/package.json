@@ -8,7 +8,7 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --config ./01.pdf.scripting.js.webpack.config.js && webpack",
     "watch": "webpack --watch"
   },
   "keywords": [],

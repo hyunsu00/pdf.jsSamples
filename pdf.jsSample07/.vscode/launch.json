@@ -21,7 +21,7 @@
 			"name": "크롬 뷰어 디버그",
 			"type": "pwa-chrome",
 			"request": "launch",
-			"url": "http://127.0.0.1:5510/web/viewer.html",
+			"url": "http://127.0.0.1:5510/index.html",
 			"webRoot": "${workspaceFolder}"
 		}
 	]

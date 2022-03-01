@@ -14,9 +14,9 @@
  */
 /* eslint-disable getter-return */
 
-/** @typedef {import("../src/display/api").PDFPageProxy} PDFPageProxy */
+/** @typedef {import("../pdfjs-dist/src/display/api").PDFPageProxy} PDFPageProxy */
 // eslint-disable-next-line max-len
-/** @typedef {import("../src/display/display_utils").PageViewport} PageViewport */
+/** @typedef {import("../pdfjs-dist/src/display/display_utils").PageViewport} PageViewport */
 // eslint-disable-next-line max-len
 /** @typedef {import("./annotation_layer_builder").AnnotationLayerBuilder} AnnotationLayerBuilder */
 /** @typedef {import("./event_utils").EventBus} EventBus */

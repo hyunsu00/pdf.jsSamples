@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-/** @typedef {import("../src/display/api").PDFPageProxy} PDFPageProxy */
+/** @typedef {import("../pdfjs-dist/src/display/api").PDFPageProxy} PDFPageProxy */
 
 const PDF_ROLE_TO_HTML_ROLE = {
   // Document level structure types

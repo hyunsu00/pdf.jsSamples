@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-/** @typedef {import("../src/display/api").PDFDocumentProxy} PDFDocumentProxy */
+/** @typedef {import("../pdfjs-dist/src/display/api").PDFDocumentProxy} PDFDocumentProxy */
 /** @typedef {import("./event_utils").EventBus} EventBus */
 /** @typedef {import("./interfaces").IL10n} IL10n */
 /** @typedef {import("./interfaces").IPDFLinkService} IPDFLinkService */

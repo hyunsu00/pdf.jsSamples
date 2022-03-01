@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-/** @typedef {import("../src/display/api").PDFPageProxy} PDFPageProxy */
+/** @typedef {import("../pdfjs-dist/src/display/api").PDFPageProxy} PDFPageProxy */
 // eslint-disable-next-line max-len
-/** @typedef {import("../src/display/display_utils").PageViewport} PageViewport */
+/** @typedef {import("../pdfjs-dist/src/display/display_utils").PageViewport} PageViewport */
 /** @typedef {import("./interfaces").IPDFLinkService} IPDFLinkService */
 
 import { XfaLayer } from "pdfjs-lib";

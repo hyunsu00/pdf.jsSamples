@@ -36,24 +36,24 @@ See https://github.com/adobe-type-tools/cmap-resources
 <!--#include viewer-snippet-chrome-extension.html-->
 <!--#endif-->
 
-    <link rel="stylesheet" href="viewer.css">
+    <link rel="stylesheet" href="web/viewer.css">
 <!--#if !PRODUCTION-->
-    <link rel="resource" type="application/l10n" href="locale/locale.properties">
+    <link rel="resource" type="application/l10n" href="web/locale/locale.properties">
 <!--#endif-->
 
 <!--#if !PRODUCTION-->
-    <script defer src="../node_modules/es-module-shims/dist/es-module-shims.js"></script>
+    <script defer src="node_modules/es-module-shims/dist/es-module-shims.js"></script>
     <script type="importmap-shim">
       {
         "imports": {
-          "pdfjs/": "../pdfjs-dist/src/",
-          "pdfjs-lib": "../pdfjs-dist/src/pdf.js",
-          "pdfjs-web/": "./"
+          "pdfjs/": "./pdfjs-dist/src/",
+          "pdfjs-lib": "./pdfjs-dist/src/pdf.js",
+          "pdfjs-web/": "./web/"
         }
       }
     </script>
 
-    <script src="viewer.js" type="module-shim"></script>
+    <script src="web/viewer.js" type="module-shim"></script>
 <!--#endif-->
 
 <!--#if (GENERIC && !MINIFIED) -->

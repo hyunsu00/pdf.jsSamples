@@ -14,9 +14,9 @@
  */
 
 // eslint-disable-next-line max-len
-/** @typedef {import("../src/display/display_utils").PageViewport} PageViewport */
+/** @typedef {import("../pdfjs-dist/src/display/display_utils").PageViewport} PageViewport */
 // eslint-disable-next-line max-len
-/** @typedef {import("../src/display/optional_content_config").OptionalContentConfig} OptionalContentConfig */
+/** @typedef {import("../pdfjs-dist/src/display/optional_content_config").OptionalContentConfig} OptionalContentConfig */
 /** @typedef {import("./event_utils").EventBus} EventBus */
 /** @typedef {import("./interfaces").IL10n} IL10n */
 // eslint-disable-next-line max-len

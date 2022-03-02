@@ -597,10 +597,8 @@ class PDFPageView {
       // let svg = document.createElement('svg');
       // svg.className = "annotationLayer";
       // div.appendChild(svg);
-
-      const PAGE_TEMPLATE = "<svg class=\"annotationLayer\"></svg>";
       let temp_div = document.createElement('div');
-      temp_div.innerHTML = PAGE_TEMPLATE;
+      temp_div.innerHTML = "<svg class=\"annotationLayer\"></svg>";
       let svg = temp_div.firstChild;
       div.appendChild(svg);
 
@@ -614,9 +612,9 @@ class PDFPageView {
 
       // == export default function render(svg, viewport, data)
       const docId = "./compressed.tracemonkey-pldi-09.pdf";
-      let PDFJSAnnotate = PDFAnnotate["default"];
-      PDFJSAnnotate.getAnnotations(docId, this.id).then(function (annotations) {
-        PDFJSAnnotate.render(svg, viewport, annotations)
+      let AnnotateRender = PDFAnnotateRender["default"];
+      AnnotateRender.getAnnotations(docId, this.id).then(function (annotations) {
+        AnnotateRender.render(svg, viewport, annotations)
       });
     }
 

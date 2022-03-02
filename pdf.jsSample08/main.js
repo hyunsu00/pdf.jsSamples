@@ -183,43 +183,64 @@ document.getElementById("underline").addEventListener("click", (e) => {
 document.getElementById("download").addEventListener("click", (e) => {
   console.log("click download");
 
-  // !!! 수정필요 !!!
-  // let pdfDocument = PDFViewerApplication.pdfDocument;
-  // pdfDocument.getData().then((data) => {
-  //   let pdfAnnotateWriter = new PDFAnnotateWriter.AnnotationFactory(data);
-  //   const pagesCount = PDFViewerApplication.pagesCount;
-  //   for (let i = 1; i <= pagesCount; i++) {
-  //     pdfDocument.getPage(i).then(function (page) {
-  //       let pageHeight = page.view[3];
-  //       AnnotateRender.getAnnotations("./compressed.tracemonkey-pldi-09.pdf", page._pageIndex + 1).then(function (annotations) {
-  //         for (let j = 0; j < annotations.annotations.length; j++) {
-  //           let annotation = annotations.annotations[j];
-  //           let x_y = [annotation.x * 0.75, pageHeight - annotation.y * 0.75];
-  //           let coordinates = [x_y[0], x_y[1], x_y[0] + annotation.width * 0.75, x_y[1] - annotation.height * 0.75];
-  //           pdfAnnotateWriter.createSquareAnnotation(page._pageIndex, coordinates.slice(), null, null);
-  //         }
-  //       });
-  //     });
-  //   }
-  //   pdfAnnotateWriter.download();
-  // });
-
-  // 임시
+  // 모든 페이지 주석 저장 및 다운로드
+  const docId = "./compressed.tracemonkey-pldi-09.pdf";
   let pdfDocument = PDFViewerApplication.pdfDocument;
-  let pageNumber = 1;
-  pdfDocument.getPage(pageNumber).then(function (page) {
-    let pageHeight = page.view[3];
-    pdfDocument.getData().then((data) => {
-      let pdfAnnotateWriter = new PDFAnnotateWriter.AnnotationFactory(data);
-      AnnotateRender.getAnnotations("./compressed.tracemonkey-pldi-09.pdf", pageNumber).then(function (annotations) {
-        for (let i = 0; i < annotations.annotations.length; i++) {
-          let annotation = annotations.annotations[i];
-          let x_y = [annotation.x * 0.75, pageHeight - annotation.y * 0.75];
-          let coordinates = [x_y[0], x_y[1], x_y[0] + annotation.width * 0.75, x_y[1] - annotation.height * 0.75];
-          pdfAnnotateWriter.createSquareAnnotation(pageNumber - 1, coordinates.slice(), null, null);
-        }
+  let pagePromises = [];
+  pdfDocument.getData().then((data) => {
+    let pdfAnnotateWriter = new PDFAnnotateWriter.AnnotationFactory(data);
+    const pagesCount = PDFViewerApplication.pagesCount;
+    for (let i = 1; i <= pagesCount; i++) {
+      pagePromises.push(pdfDocument.getPage(i));
+    }
+
+    let annotationsPromises = [];
+    Promise.all(pagePromises).then(function (allPages) {
+      allPages.forEach((page) => {
+        annotationsPromises.push(AnnotateRender.getAnnotations(docId, page._pageIndex + 1));
+      });
+
+      Promise.all(annotationsPromises).then(function (allAnnotations) {
+        allAnnotations.forEach((annotations) => {
+          let pageHeight = 0;
+          for (const page of allPages) {
+            if (page._pageIndex + 1 === annotations.pageNumber) {
+              pageHeight = page.view[3];
+              break;
+            }
+          }
+          for (let i = 0; i < annotations.annotations.length; i++) {
+            let annotation = annotations.annotations[i];
+            let x_y = [annotation.x * 0.75, pageHeight - annotation.y * 0.75];
+            let coordinates = [x_y[0], x_y[1], x_y[0] + annotation.width * 0.75, x_y[1] - annotation.height * 0.75];
+            if (annotation.type === "area") {
+              pdfAnnotateWriter.createSquareAnnotation(annotations.pageNumber - 1, coordinates.slice(), null, null);
+            }
+          }
+        });
         pdfAnnotateWriter.download();
       });
     });
   });
+
+  // 1페이지만 주석 저장 테스트 코드
+  // let pdfDocument = PDFViewerApplication.pdfDocument;
+  // let pageNumber = 1;
+  // pdfDocument.getPage(pageNumber).then(function (page) {
+  //   let pageHeight = page.view[3];
+  //   pdfDocument.getData().then((data) => {
+  //     let pdfAnnotateWriter = new PDFAnnotateWriter.AnnotationFactory(data);
+  //     AnnotateRender.getAnnotations("./compressed.tracemonkey-pldi-09.pdf", pageNumber).then(function (annotations) {
+  //       for (let i = 0; i < annotations.annotations.length; i++) {
+  //         let annotation = annotations.annotations[i];
+  //         let x_y = [annotation.x * 0.75, pageHeight - annotation.y * 0.75];
+  //         let coordinates = [x_y[0], x_y[1], x_y[0] + annotation.width * 0.75, x_y[1] - annotation.height * 0.75];
+  //         if (annotation.type === "area") {
+  //           pdfAnnotateWriter.createSquareAnnotation(annotations.pageNumber - 1, coordinates.slice(), null, null);
+  //         }
+  //       }
+  //       pdfAnnotateWriter.download();
+  //     });
+  //   });
+  // });
 });

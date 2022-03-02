@@ -589,6 +589,37 @@ class PDFPageView {
       div.appendChild(canvasWrapper);
     }
 
+
+    // !!! 테스트 !!!
+    {
+      // svg 생성
+      // == export function createPage(pageNumber)
+      // let svg = document.createElement('svg');
+      // svg.className = "annotationLayer";
+      // div.appendChild(svg);
+
+      const PAGE_TEMPLATE = "<svg class=\"annotationLayer\"></svg>";
+      let temp_div = document.createElement('div');
+      temp_div.innerHTML = PAGE_TEMPLATE;
+      let svg = temp_div.firstChild;
+      div.appendChild(svg);
+
+      // svg 렌더링
+      // == function scalePage(pageNumber, viewport, context)
+      const viewport = pdfPage.getViewport({scale: this.scale});
+      svg.setAttribute('width', viewport.width);
+      svg.setAttribute('height', viewport.height);
+      svg.style.width = canvasWrapper.style.width;
+      svg.style.height = canvasWrapper.style.height;
+
+      // == export default function render(svg, viewport, data)
+      const docId = "./compressed.tracemonkey-pldi-09.pdf";
+      let PDFJSAnnotate = PDFAnnotate["default"];
+      PDFJSAnnotate.getAnnotations(docId, this.id).then(function (annotations) {
+        PDFJSAnnotate.render(svg, viewport, annotations)
+      });
+    }
+
     let textLayer = null;
     if (this.textLayerMode !== TextLayerMode.DISABLE && this.textLayerFactory) {
       const textLayerDiv = document.createElement("div");

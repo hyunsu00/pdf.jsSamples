@@ -1,4 +1,5 @@
 import "./web/viewer.js";
+import "./lib/pdf-annotate.js";
 
 let PDFJSAnnotate = PDFAnnotate["default"];
 const UI = PDFJSAnnotate.UI;

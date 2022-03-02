@@ -9,7 +9,7 @@ module.exports = {
   // 기본경로 : dist/main.js -> 사용자 경로 및 출력파일 이름 변경
   output: {
     filename: "pdf-annotate.js",
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "lib"),
     // library : 엔트리 포인트의 export를 내보내는 라이브러리 설정
     // https://webpack.kr/configuration/output/#outputlibrary
     library: "PDFAnnotate",

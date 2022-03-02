@@ -21,7 +21,7 @@ body {
   bottom: 0;
 }
 
-#content-wrapper {
+/* #content-wrapper {
   position: absolute;
   top: 35px;
   left: 0;
@@ -79,4 +79,4 @@ body {
 #comment-wrapper .comment-list-form input {
   padding: 5px;
   width: 100%;
-}
+} */
